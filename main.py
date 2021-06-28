@@ -38,8 +38,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     mes = event.message.text
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="ありがとうございます！")) 
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="『{0}』".format(mes))) 
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="ありがとうございます！\n{0}".format(mes))) 
 
 #-------------------------------------------------------------------------------------------------
 # ポート番号の設定

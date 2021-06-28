@@ -24,13 +24,10 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 def callback():
     # リクエストヘッダーから署名検証のための値を取得します。
     signature = request.headers['X-Line-Signature']
- 
     # リクエストボディを取得します。
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
- 
-    # handle webhook body
-    # 署名を検証し、問題なければhandleに定義されている関数を呼び出す。
+    # 署名を検証し、問題なければwebhook handleに定義されている関数を呼び出す。
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -40,7 +37,9 @@ def callback():
 #LINEのメッセージの取得と返信内容の設定 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="『{0}』".format(event.message.text))) 
+    mes = event.message.text
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="ありがとうございます！")) 
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="『{0}』".format(mes))) 
 
 #-------------------------------------------------------------------------------------------------
 # ポート番号の設定

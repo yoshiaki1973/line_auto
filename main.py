@@ -13,9 +13,8 @@ import os
 app = Flask(__name__)
 
 #環境変数取得
-# LINE Developersで設定されているアクセストークンとChannel Secretをを取得し、設定します。
-YOUR_CHANNEL_ACCESS_TOKEN = "'UuyoUDKHxiSPj2AuhYqpyQPhJZOoHkpKGskvNYXFknSfLyIuSaiI8uF2WngMmwSD0eXYUmwswCmAmbSlR4oF/EWlKTxpp82j7Kz4UVf/vQXUxbOwjFOVWwJtBWb+3/2W7nvfW0sAeO8amZXQKVigeQdB04t89/1O/w1cDnyilFU="
-YOUR_CHANNEL_SECRET = "f4a7450c71ba9fcd1a51f56b38307f6f"
+YOUR_CHANNEL_ACCESS_TOKEN = "'fWpix0KEHR8g63I7ZIcwG8ykFMaU9W3Dn5CUO5j53aSS7zf085ismul+VXf18X7eq3fVo5oG+2SxjB+HygboMexznrAQcxla8Cu2uNTwYxEIGJbmflsSJXvw/DXxzr22A8ie148FcmErbK0i7h9yugdB04t89/1O/w1cDnyilFU="
+YOUR_CHANNEL_SECRET = "b7fd868e3294cb9b4b0c3561c3434d1f"
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -41,11 +40,6 @@ def callback():
 ###############################################
 #LINEのメッセージの取得と返信内容の設定(オウム返し)
 ###############################################
- 
-#LINEでMessageEvent（普通のメッセージを送信された場合）が起こった場合に、
-#def以下の関数を実行します。
-#reply_messageの第一引数のevent.reply_tokenは、イベントの応答に用いるトークンです。 
-#第二引数には、linebot.modelsに定義されている返信用のTextSendMessageオブジェクトを渡しています。
  
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

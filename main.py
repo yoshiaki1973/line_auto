@@ -27,7 +27,7 @@ def callback():
     # リクエストボディを取得します。
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-    # 署名を検証し、問題なければwebhook handleに定義されている関数を呼び出す。
+    # 署名を検証して問題なければwebhook handleに定義されている関数を呼び出す。
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -38,7 +38,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     mes = event.message.text
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="ありがとうございます！\n{0}".format(mes))) 
+    res = "検索結果：\n{0}".format(mes)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=res)) 
 
 #-------------------------------------------------------------------------------------------------
 # ポート番号の設定
